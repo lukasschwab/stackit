@@ -21,7 +21,7 @@ if __name__ == '__main__':
         term = raw_input('Please provide a search term:')
     else:
         term = ' '.join(sys.argv[1:])
-    print('Searching for %s...' % term,)
+    print('Searching for %s... \n' % term,)
     #sys.stdout.flush()
 
     question = so.search_advanced(q = term, sort = Sort.Votes)[0]
@@ -30,7 +30,7 @@ if __name__ == '__main__':
         questionurl = question.json['link']
         answerid = question.json['accepted_answer_id']
 
-        print ('%8d %s\nAnswer ID %d' % (question.id, question.title, answerid))
+        print ('%8d %s' % (question.id, question.title))
         #questionurl gives the url of the SO question
         #the answer is under id "answer-answerid", and text of answer is in class post-text
 
