@@ -66,18 +66,14 @@ def getTerm(args):
         term = ' '.join(args[1:])
     return term
 
-<<<<<<< HEAD
-def main():
-=======
 def getFullAnswer(soup, answerid):
     # Focuses on the single div with the matching answerid--necessary b/c bs4 is quirky
     for answerdiv in soup.find_all('div', attrs={'id': 'answer-'+str(answerid)}):
-        # Return printable text div––the contents of the answer
+        # Return printable text div--the contents of the answer
         # This isn't perfect; things like code indentation aren't pretty at all
         return foo.find('div', attrs={'class': 'post-text'})
 
-if __name__ == '__main__':
->>>>>>> 640f70c3042bad9207b8d4ee65ab7ff12a3611ca
+def main():
     term = getTerm(sys.argv)
     searchTerm(term)
     sys.stdout.flush()
