@@ -3,6 +3,9 @@ from __future__ import print_function
 import sys
 import stackexchange
 
+import requests
+import bs4
+
 so = stackexchange.Site(stackexchange.StackOverflow, impose_throttling=True)
 
 if __name__ == '__main__':
