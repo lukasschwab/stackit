@@ -23,6 +23,15 @@ This currently includes some future features––update before pitch/etc
 + Parses and displays relevant questions and answers directly on the command line in reader-friendly markdown format
 + Pay it forward––stackit integrates suggested answer contribution into your development process.
 
+## Usage
+stackit works from any directory in terminal/cmd prompt
+	-v . . . verbose . . . gives all answers for a given question
+	-b . . . browser . . . opens the top answer in a browser window
+	-f . . . filter . . . filters the search results by a certain term
+	-s . . . save . . . saves the output to a txt file
+
+	--version  . . . . . returns the version 
+
 ## Thanks
 This project is possible because of several other pre-existing projects and their contributors:
 
