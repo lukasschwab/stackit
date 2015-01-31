@@ -20,8 +20,14 @@ if __name__ == '__main__':
 
     for question in questions:
         if 'accepted_answer_id' in question.json:
-        	questionurl = question.json['link']
-        	answerid = question.json['accepted_answer_id']
-        	print('%8d %s\nAnswer ID %d' % (question.id, question.title, answerid))
-        	#questionurl gives the url of the SO question
-        	#the answer is under id "answer-answerid", and text of answer is in class post-text
+            questionurl = question.json['link']
+            answerid = question.json['accepted_answer_id']
+            print('%8d %s\nAnswer ID %d' % (question.id, question.title, answerid))
+            #questionurl gives the url of the SO question
+            #the answer is under id "answer-answerid", and text of answer is in class post-text
+
+            # Pulls the html from the StackOverflow site, converts to Beautiful Soup
+            response = requests.get(questionurl)
+            soup = bs4.BeautifulSoup(response.text)
+            # Prints the accepted answer div, concatonated "answer-" and answerid
+            print soup.find("div", {"id": "answer-" + answerid})
