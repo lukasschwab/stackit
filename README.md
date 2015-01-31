@@ -1,7 +1,8 @@
 # stackit
-The essential sidekick to any superhero developer. Stackit sends smart StackOverflow queries from your command line.
+The essential sidekick to any superhero developer. <br>
+Stackit sends smart StackOverflow queries from your command line. <br>
+¡insert demo gif here!
 
-<insert demo gif here>
 <hr>
 ## Features
 <ul>
