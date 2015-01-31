@@ -19,7 +19,7 @@ This currently includes some future features––update before pitch/etc
 
 + Written in Python
 + Works on Mac, Windows
-+ Automatically pipe error messages into StackOverflow queries
++ Automatically pipes error messages into StackOverflow queries
 + Parses and displays relevant questions and answers directly on the command line in reader-friendly markdown format
 + Pay it forward––stackit integrates suggested answer contribution into your development process.
 
