@@ -66,7 +66,11 @@ def getTerm(args):
         term = ' '.join(args[1:])
     return term
 
-if __name__ == '__main__':
+def main():
     term = getTerm(sys.argv)
     searchTerm(term)
     sys.stdout.flush()
+
+if __name__ == '__main__':
+    main()
+    
