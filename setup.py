@@ -27,7 +27,7 @@ setup(
 
     entry_points={
         'console_scrips': [
-            'stackit=stackit.stackit-core:main',
-        ]
+            'stackit=stackit-core:main'
+        ],
     }
 )
