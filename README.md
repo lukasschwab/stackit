@@ -1,20 +1,31 @@
 # stackit
-The essential sidekick to any superhero developer. <br>
-Stackit sends smart StackOverflow queries from your command line. <br>
+
+The essential sidekick to any superhero developer.
+
+Stackit sends smart StackOverflow queries from your command line.
+
 ¡insert demo gif here!
 
-<hr>
+***
+
 ## Features
-<ul>
-  <li>Written in Python</li>
-  <li>Works on Mac, Windows</li>
-  <li>StackOverflow queries based on error messages</li>
-  <li>Responses appear directly in your current bash</li>
-  <li>Contribute answers to directly from your bash (?)</li>
-</ul>
-<hr>
-##stuff to add later
-<ul>
-  <li>how to install</li>
-  <li>usage</li>
-</ul>
+
+This currently includes some future features––update before pitch/etc
+
++ Written in Python
++ Works on Mac, Windows
++ Automatically pipe error messages into StackOverflow queries
++ Parses and displays relevant questions and answers directly on the command line in reader-friendly markdown format
++ Pay it forward––stackit integrates suggested answer contribution into your development process.
+
+
+***
+
+## To-Do
+
++ README:
+    + Installation instructions
+    + Usage instructions
+    + Contribution instructions
++ stackit-core.py:
++ Bash wrapper for stackit-core.py:
