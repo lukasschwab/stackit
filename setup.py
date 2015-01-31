@@ -1,4 +1,8 @@
 from setuptools import setup, find_packages
+from setuptools.command.install import install
+import os, os.path
+
+
 setup(
     name = "stackit",
     version = "0.1.0",
@@ -20,4 +24,10 @@ setup(
     keywords = "error stderr stack overflow stackoverflow stack exchange stackexchange",
     url = "http://stackitfor.me", # project homepage
     download_url = "https://github.com/lukasschwab/stackit/tarball/0.1.0",
+
+    entry_points={
+        'console_scrips': [
+            'stackit=stackit.stackit-core:main',
+        ]
+    }
 )
