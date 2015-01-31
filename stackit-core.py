@@ -8,7 +8,6 @@ from stackexchange import Sort
 
 import requests
 import bs4
-import msvcrt as m
 
 NUM_RESULTS = 5
 
