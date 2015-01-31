@@ -78,6 +78,4 @@ def main():
     searchTerm(term)
     sys.stdout.flush()
 
-if __name__ == '__main__':
-    main()
     

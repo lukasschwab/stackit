@@ -1,13 +1,11 @@
 from setuptools import setup, find_packages
 from setuptools.command.install import install
-import os, os.path
-
 
 setup(
     name = "stackit",
     version = "0.1.0",
     packages = ['stackit'],
-    
+
     # dependencies
     install_requires=[
         'Py-StackExchange',
@@ -25,9 +23,9 @@ setup(
     url = "http://stackitfor.me", # project homepage
     download_url = "https://github.com/lukasschwab/stackit/tarball/0.1.0",
 
-    entry_points={
-        'console_scrips': [
-            'stackit=stackit-core:main'
-        ],
+    entry_points ={
+        'console_scripts': [
+            'stackit=stackit.stackit_core:main'
+        ]
     }
 )
