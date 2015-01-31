@@ -24,13 +24,9 @@ This currently includes some future features––update before pitch/etc
 + Pay it forward––stackit integrates suggested answer contribution into your development process.
 
 ## Usage
-stackit works from any directory in terminal/cmd prompt
-	-v . . . verbose . . . gives all answers for a given question
-	-b . . . browser . . . opens the top answer in a browser window
-	-f . . . filter . . . filters the search results by a certain term
-	-s . . . save . . . saves the output to a txt file
-
-	--version  . . . . . returns the version 
+To run the search arguments, there are two usages:
+stackit -s "query" runs a search of StackOverflow for the query put in quotation marks
+stackit -p command will run your command, (ex: python script.py) and automatically search StackOverflow for the generated error, if any
 
 ## Thanks
 This project is possible because of several other pre-existing projects and their contributors:
