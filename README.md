@@ -6,8 +6,6 @@ stackit sends smart StackOverflow queries from your command line.
 
 Created at [SB Hacks](ucsbhacks.com) 2015.
 
-¡insert demo gif here!
-
 <div style="text-align:center">
 <img src="http://media3.giphy.com/media/qan0r16ZJY2Qg/giphy.gif">
 </div>
