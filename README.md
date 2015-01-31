@@ -8,7 +8,7 @@ Created at [SB Hacks](ucsbhacks.com) 2015.
 
 ¡insert demo gif here!
 
-<img src="http://media3.giphy.com/media/qan0r16ZJY2Qg/giphy.gif" style="width:100%">
+<img src="http://media3.giphy.com/media/qan0r16ZJY2Qg/giphy.gif" style="margin-left:auto; margin-right:auto;">
 
 ***
 
