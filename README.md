@@ -8,9 +8,9 @@ Created at [SB Hacks](ucsbhacks.com) 2015.
 
 ¡insert demo gif here!
 
-<p align="center">
+<div style="text-align:center">
 <img src="http://media3.giphy.com/media/qan0r16ZJY2Qg/giphy.gif">
-</p>
+</div>
 
 ***
 
@@ -38,10 +38,10 @@ Contribution instructions coming soon.
 For now, *hands off*.
 
 ### Contributors
-+ [Vicki Niu](github.com/vickiniu)
-+ [Leilani Reyes](github.com/lanidelrey)
-+ [Eni Asebiomo](github.com/eniasebiomo)
-+ [Lukas Schwab](github.com/lukasschwab)
++ [Vicki Niu](https://github.com/vickiniu)
++ [Leilani Reyes](https://github.com/lanidelrey)
++ [Eni Asebiomo](https://github.com/eniasebiomo)
++ [Lukas Schwab](https://github.com/lukasschwab)
 
 ***
 
