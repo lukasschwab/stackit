@@ -32,4 +32,5 @@ if __name__ == '__main__':
             response = requests.get(questionurl)
             soup = bs4.BeautifulSoup(response.text)
             # Prints the accepted answer div, concatonated "answer-" and answerid
-            print(soup.find("div", {"id": "answer-"+str(answerid)}))
+            # Gets the p string -- do al answers follow this format, or do some have more info?
+            print soup.find("div", {"id": "answer-"+str(answerid)}).p
