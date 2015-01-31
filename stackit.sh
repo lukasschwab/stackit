@@ -11,7 +11,7 @@ while getopts ":s:" opt; do
 
             echo="ERROR=$ERROR"
 
-            $2 $3 2>&1 test | python stackit-core.py -stderr $ERROR$
+            python stackit-core.py -stderr $ERROR$
             ;;
        
     esac
