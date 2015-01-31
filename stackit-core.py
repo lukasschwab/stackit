@@ -32,4 +32,4 @@ if __name__ == '__main__':
             response = requests.get(questionurl)
             soup = bs4.BeautifulSoup(response.text)
             # Prints the accepted answer div, concatonated "answer-" and answerid
-            print soup.find("div", {"id": "answer-" + answerid})
+            print(soup.find("div", {"id": "answer-"+str(answerid)}))
