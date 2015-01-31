@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 setup(
     name = "stackit",
     version = "0.1.0",
-    packages = find_packages(),
+    packages = ['stackit'],
     
     # dependencies
     install_requires=[
@@ -19,4 +19,5 @@ setup(
     license = "MIT",
     keywords = "error stderr stack overflow stackoverflow stack exchange stackexchange",
     url = "http://stackitfor.me", # project homepage
+    download_url = "https://github.com/lukasschwab/stackit/tarball/0.1.0",
 )
