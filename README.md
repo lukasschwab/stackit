@@ -1,12 +1,13 @@
 # stackit
 
-The essential sidekick to any superhero developer.
-
-stackit sends smart StackOverflow queries from your command line.
-
-Created at [SB Hacks](ucsbhacks.com) 2015.
-
 <p align="center">
+
+The essential sidekick to any superhero developer. <br />
+
+stackit sends smart StackOverflow queries from your command line. <br />
+
+Created at <a href="http://ucsbhacks.com">SB Hacks</a> 2015. <br />
+
 <img src="http://media3.giphy.com/media/qan0r16ZJY2Qg/giphy.gif">
 </p>
 
