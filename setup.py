@@ -21,7 +21,7 @@ setup(
     license = "MIT",
     keywords = "error stderr stack overflow stackoverflow stack exchange stackexchange",
     url = "http://stackitfor.me", # project homepage
-    download_url = "https://github.com/lukasschwab/stackit/tarball/0.1.0",
+    download_url = "https://github.com/lukasschwab/stackit/tarball/0.1.1",
 
     entry_points ={
         'console_scripts': [
