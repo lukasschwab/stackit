@@ -6,7 +6,9 @@ The essential sidekick to any superhero developer. <br />
 
 <b>stackit</b> sends smart StackOverflow queries from your command line. <br />
 
-Created at <a href="http://ucsbhacks.com">SB Hacks</a> 2015. <a href="http://stackitfor.me">stackitfor.me</a> <br />
+<a href="http://stackitfor.me">stackitfor.me</a> -- Created at <a href="http://ucsbhacks.com">SB Hacks</a> 2015. <br />
+
+[stackit](http://www.stackitfor.me)
 
 <img src="http://i.giphy.com/3xz2BtvxJvZQb7Pyes.gif">
 </p>
