@@ -8,7 +8,7 @@ The essential sidekick to any superhero developer. <br />
 
 Created at <a href="http://ucsbhacks.com">SB Hacks</a> 2015. <br />
 
-<img src="http://media3.giphy.com/media/qan0r16ZJY2Qg/giphy.gif">
+<img src="http://i.giphy.com/3xz2BtvxJvZQb7Pyes.gif">
 </p>
 
 ***
