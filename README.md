@@ -23,7 +23,34 @@ This currently includes some future features––update before pitch/etc
 + Parses and displays relevant questions and answers directly on the command line in reader-friendly markdown format
 + Pay it forward––stackit integrates suggested answer contribution into your development process.
 
+## Installation
+
+There are two ways to install stackit. Both should have roughly the same outcome, but have their advantages/disadvantages.
+
+**1. PyPI/pip**
+
+This method will always produce some stable build, but may not be the most up to dat version. New functionality will come slower than building from this repo.
+
+    $ pip install stackit
+
+Note, depending on your computer's settings, you may need to `sudo pip install stackit`.
+
+**2. Build from this repo**
+
+This method will always include the latest features, but sometimes will not work at all. Oops!
+
+Clone the repo, then use setup.py to install the package. Note, this process will differ only slightly in a non-bash shell.
+
+    $ git clone https://github.com/lukasschwab/stackit.git
+    $ cd stackit
+    $ python setup.py install
+
+Note, depending on your computer's settings, you may need to `sudo python setup.py install`.
+
 ## Usage
+
+The install process establishes an alias, `stackit`, for stackit_core.py's functionality. Instead of using `python stackit_core.py`, you will *always* simply use `stackit` at the command prompt.
+
 To run the search arguments, there are two usages:
 
 + 'stackit -s "query"' runs a search of StackOverflow for the query put in quotation marks
