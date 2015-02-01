@@ -51,18 +51,6 @@ Note, depending on your computer's settings, you may need to `sudo python setup.
 
 The install process establishes an alias, `stackit`, for stackit_core.py's functionality. Instead of using `python stackit_core.py`, you will *always* simply use `stackit` at the command prompt.
 
-To run the search arguments, there are two usages:
-
-+ 'stackit -s "query"' runs a search of StackOverflow for the query put in quotation marks
-+ 'stackit -p "command"' will run your command, (ex: python script.py) and automatically search StackOverflow for the generated error, if any
-
-### Args
-+ -v: verbose
-+ -b: browser
-+ -f: filter
-+ -s: save
-+ --version: version me, bro
-
 ### Command line arguments
 + none: version splash page // usage
 + `-h`, `--help`: version splash page // usage
