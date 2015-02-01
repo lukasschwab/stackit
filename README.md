@@ -79,14 +79,3 @@ For now, *hands off*.
 + [Leilani Reyes](https://github.com/lanidelrey)
 + [Eni Asebiomo](https://github.com/eniasebiomo)
 + [Lukas Schwab](https://github.com/lukasschwab)
-
-***
-
-## To-Do
-
-+ README:
-    + Installation instructions
-    + Usage instructions
-    + Contribution instructions
-+ stackit-core.py:
-+ Bash wrapper for stackit-core.py:
