@@ -54,10 +54,10 @@ The install process establishes an alias, `stackit`, for stackit_core.py's funct
 ### Command line arguments
 + none: version splash page // usage
 + `-h`, `--help`: version splash page // usage
++ `-s`: `--search`: search by user term (string)
 + `--version`: simple version report
 + `--verbose`: full text of top result and accepted answer
 + `-e`: `--stderr`: runs your program and searches by stderr output
-+ `-s`: `--search`: search by user term (string)
 + `-t`: `--tags`: searches by tags in particular (multiple arguments)
 
 ### Interface flow commands
