@@ -14,19 +14,17 @@ Created at <a href="http://ucsbhacks.com">SB Hacks</a> 2015. <br />
 ***
 
 ## Features
+<p align="center">
+
+<img src="http://i.giphy.com/3rgXBA2qoAawH6bAjK.gif">
+</p>
 
 This currently includes some future features––update before pitch/etc
 
-+ Written in Python
-+ Works on Mac, Windows
++ Written entirely in Python
++ Works on Mac, Windows and Linux
 + Automatically pipes error messages into StackOverflow queries
 + Parses and displays relevant questions and answers directly on the command line in reader-friendly markdown format
-+ Pay it forward––stackit integrates suggested answer contribution into your development process.
-
-<p align="center">
-
-<img src="http://i.giphy.com/3xz2BG3YBiGLTSIvja.gif">
-</p>
 
 ## Installation
 
