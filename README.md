@@ -23,6 +23,11 @@ This currently includes some future features––update before pitch/etc
 + Parses and displays relevant questions and answers directly on the command line in reader-friendly markdown format
 + Pay it forward––stackit integrates suggested answer contribution into your development process.
 
+<p align="center">
+
+<img src="http://i.giphy.com/3xz2BG3YBiGLTSIvja.gif">
+</p>
+
 ## Installation
 
 There are two ways to install stackit. Both should have roughly the same outcome, but have their advantages/disadvantages.
