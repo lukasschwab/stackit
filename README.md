@@ -1,4 +1,4 @@
-# [stackit](https://www.stackitfor.me)
+# [stackit](http://www.stackitfor.me)
 
 <p align="center">
 
