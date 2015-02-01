@@ -96,8 +96,8 @@ def getTerm(parser):
     if(pArgs.stderr):
         commandlist = pArgs.stderr.split()
         command = commandlist[0]
-        filename = os.getcwd() + "\\" + commandlist[1]
-        process = subprocess.Popen(command + " " + filename, stderr=subprocess.PIPE)
+        filename = os.getcwd() + "/" + commandlist[1]
+        process = subprocess.Popen(command + " " + filename, stderr=subprocess.PIPE, shell=True)
         output = process.communicate()[1]
         term += (output.splitlines()[-1] + " ")
     return term
