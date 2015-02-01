@@ -73,6 +73,33 @@ def getFullAnswer(soup, answerid):
         # This isn't perfect; things like code indentation aren't pretty at all
         return foo.find('div', attrs={'class': 'post-text'})
 
+class pColor:
+    # Want to eliminate these that won't be used!
+    END =           '\033[0m'
+    # Colors
+    PURPLEBLUE =    '\033[34m'
+    MISTGREY =      '\033[20m'
+    PURPLE =        '\033[35m'
+    CYAN =          '\033[36m'
+    LIGHTGREY =     '\033[37m'
+    DARKGREY =      '\033[90m'
+    LIGHTRED =      '\033[91m'
+    LIGHTGREEN =    '\033[92m'
+    LIGHTBLUE =     '\033[94m'
+    PINK =          '\033[95m'
+    BLUE =          '\033[94m'
+    GREEN =         '\033[92m'
+    YELLOW =        '\033[93m'
+    RED =           '\033[91m'
+    # Formatting
+    BOLD =          '\033[1m'
+    UNDERLINE =     '\033[4m'
+    REVERSE =       '\033[07m'
+    STRIKETHROUGH = '\033[09m'
+    INVISIBLE =     '\033[08m'
+    INVISIBLE2 =    '\033[02m'
+
+
 def main():
     term = getTerm(sys.argv)
     searchTerm(term)

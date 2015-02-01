@@ -72,6 +72,7 @@ This project is possible because of several other pre-existing projects and thei
 + [Py-StackExchange](https://github.com/lucjon/Py-StackExchange): a Python wrapper for the StackExchange API
 + [Requests](https://github.com/kennethreitz/requests): "HTTP for Humans"
 + [Beautiful Soup 4](http://www.crummy.com/software/BeautifulSoup/bs4/doc/): pretty data parsing for HTML/XML files, so you can read stuff
++ [Pyfancy](https://github.com/ilovecode1/pyfancy) makes your print statements colorful // legible. This project doesn't incorporate `pyfancy.py` verbatim, but this project demonstrates the method.
 + [Karan Goel](https://github.com/karan)'s work with [joe](https://github.com/karan/joe) was a tremendous help in designing a command line tool in Python, and his [Medium article](https://medium.com/@karan/these-6-simple-changes-made-my-recent-side-project-go-viral-53fd6571c11c) on putting together a good readme is an inspiration to us all. Thank you based joe.
 + Peter Downs has a great [article](http://peterdowns.com/posts/first-time-with-pypi.html) on how to submit a package to PyPI.
 
