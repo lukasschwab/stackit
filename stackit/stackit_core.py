@@ -17,7 +17,7 @@ import re
 
 NUM_RESULTS = 5
 API_KEY = "3GBT2vbKxgh*ati7EBzxGA(("
-VERSION_NUM = "0.1.1"
+VERSION_NUM = "0.1.2"
 
 # HTML to markdown parsing
 # https://github.com/aaronsw/html2text

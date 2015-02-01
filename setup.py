@@ -3,7 +3,7 @@ from setuptools.command.install import install
 
 setup(
     name = "stackit",
-    version = "0.1.1",
+    version = "0.1.2",
     packages = ['stackit'],
 
     # dependencies
@@ -21,7 +21,7 @@ setup(
     license = "MIT",
     keywords = "error stderr stack overflow stackoverflow stack exchange stackexchange",
     url = "http://stackitfor.me", # project homepage
-    download_url = "https://github.com/lukasschwab/stackit/tarball/0.1.1",
+    download_url = "https://github.com/lukasschwab/stackit/tarball/0.1.2",
 
     entry_points ={
         'console_scripts': [
