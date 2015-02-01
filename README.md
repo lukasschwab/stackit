@@ -54,10 +54,10 @@ The install process establishes an alias, `stackit`, for stackit_core.py's funct
 ### Command line arguments
 + none: version splash page // usage
 + `-h`, `--help`: version splash page // usage
++ `-s`: `--search`: search by user term (string)
 + `--version`: simple version report
 + `--verbose`: full text of top result and accepted answer
 + `-e`: `--stderr`: runs your program and searches by stderr output
-+ `-s`: `--search`: search by user term (string)
 + `-t`: `--tags`: searches by tags in particular (multiple arguments)
 
 ### Interface flow commands
@@ -65,6 +65,10 @@ The install process establishes an alias, `stackit`, for stackit_core.py's funct
 + #: select: shows full question//top answer text in focus -- be careful that it's clearly not the SO question ID, but the list index
 + `--b`: opens focused question in browser
 + `--x`: exit: go back to the list focus
+
+### Example
+    
+    $ stackit -s"How do I create a bash alias?"
 
 ## Thanks
 This project is possible because of several other pre-existing projects and their contributors:

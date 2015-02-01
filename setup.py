@@ -3,7 +3,7 @@ from setuptools.command.install import install
 
 setup(
     name = "stackit",
-    version = "0.1.0",
+    version = "0.1.1",
     packages = ['stackit'],
 
     # dependencies

@@ -85,7 +85,7 @@ def printQuestion(question, count):
     soup = bs4.BeautifulSoup(response.text)
     # Prints the accepted answer div, concatonated "answer-" and answerid
     # Gets the p string -- do al answers follow this format, or do some have more info?
-    print(str(count) + "\nQuestion: " + question.title + "\nAnswer: " + h.handle(soup.find("div", {"id": "answer-"+str(answerid)}).p.prettify()) + "\n")
+    print(pColor.BLUE + str(count) + "\n" + "Question: " + question.title + pColor.END + "\nAnswer: " + h.handle(soup.find("div", {"id": "answer-"+str(answerid)}).p.prettify()) + "\n")
 
 def getTerm(parser):
     term = ""
@@ -117,8 +117,8 @@ def printFullQuestion(question):
         answertext = h.handle(answerdiv.find('div', attrs={'class': 'post-text'}).prettify())
     for cell in soup.find_all('td', attrs={'class': 'postcell'}):
         questiontext = h.handle(cell.find('div', attrs={'class': 'post-text'}).prettify())
-    print("-------------------------QUESTION------------------------\n" + question.title + "\n" + questiontext 
-        + "\n\n-------------------------------ANSWER------------------------------------\n" + answertext)
+    print(pColor.BLUE + "-------------------------QUESTION------------------------\n" + question.title + "\n" + questiontext 
+        + pColor.END + "\n\n-------------------------------ANSWER------------------------------------\n" + answertext)
 
 def searchVerbose(term):
     questions = so.search_advanced(q = term, sort = Sort.Votes)
