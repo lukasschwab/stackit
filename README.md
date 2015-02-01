@@ -1,4 +1,5 @@
 # stackit
+##### [stackitfor.me](https://www.stackitfor.me)
 
 <p align="center">
 
@@ -18,8 +19,6 @@ Created at <a href="http://ucsbhacks.com">SB Hacks</a> 2015. <br />
 
 <img src="http://i.giphy.com/3rgXBA2qoAawH6bAjK.gif">
 </p>
-
-This currently includes some future features––update before pitch/etc
 
 + Written entirely in Python
 + Works on Mac, Windows and Linux
