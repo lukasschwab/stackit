@@ -23,8 +23,6 @@ This currently includes some future features––update before pitch/etc
 + Parses and displays relevant questions and answers directly on the command line in reader-friendly markdown format
 + Pay it forward––stackit integrates suggested answer contribution into your development process.
 
-<br>
-
 ## Usage
 To run the search arguments, there are two usages:
 
@@ -53,8 +51,6 @@ To run the search arguments, there are two usages:
 + `--b`: opens focused question in browser
 + `--x`: exit: go back to the list focus
 
-<br>
-
 ## Thanks
 This project is possible because of several other pre-existing projects and their contributors:
 
@@ -64,15 +60,11 @@ This project is possible because of several other pre-existing projects and thei
 + [Karan Goel](https://github.com/karan)'s work with [joe](https://github.com/karan/joe) was a tremendous help in designing a command line tool in Python, and his [Medium article](https://medium.com/@karan/these-6-simple-changes-made-my-recent-side-project-go-viral-53fd6571c11c) on putting together a good readme is an inspiration to us all. Thank you based joe.
 + Peter Downs has a great [article](http://peterdowns.com/posts/first-time-with-pypi.html) on how to submit a package to PyPI.
 
-<br>
-
 ## Contributing
 
 Contribution instructions coming soon.
 
 For now, *hands off*.
-
-<br>
 
 ### Contributors
 + [Vicki Niu](https://github.com/vickiniu)
