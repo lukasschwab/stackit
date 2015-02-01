@@ -66,6 +66,10 @@ The install process establishes an alias, `stackit`, for stackit_core.py's funct
 + `--b`: opens focused question in browser
 + `--x`: exit: go back to the list focus
 
+### Example
+    
+    stackit -s"How do I create a bash alias?"
+
 ## Thanks
 This project is possible because of several other pre-existing projects and their contributors:
 
