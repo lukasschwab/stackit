@@ -12,6 +12,7 @@ import subprocess
 import argparse
 import math
 import bs4
+import os
 import re
 
 NUM_RESULTS = 5
@@ -93,7 +94,11 @@ def getTerm(parser):
     if(pArgs.search):
         term += (pArgs.search + " ")
     if(pArgs.stderr):
-        process = subprocess.Popen(pArgs.stderr, stderr=subprocess.PIPE)
+        commandlist = pArgs.stderr.split()
+        command = commandlist[0]
+        filename = os.getcwd() + "\\" + commandlist[1]
+        print(filename)
+        process = subprocess.Popen(command + " " + filename, stderr=subprocess.PIPE)
         output = process.communicate()[1]
         term += (output.splitlines()[-1] + " ")
     return term
