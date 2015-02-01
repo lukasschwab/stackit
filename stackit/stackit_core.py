@@ -7,11 +7,16 @@ from stackexchange import Sort
 # The approved answer ID: 16800090
 
 import requests
+import webbrowser
+import subprocess
+import argparse
+import math
 import bs4
 import re
 
 NUM_RESULTS = 5
 API_KEY = "3GBT2vbKxgh*ati7EBzxGA(("
+VERSION_NUM = "0.1.1"
 
 # HTML to markdown parsing
 # https://github.com/aaronsw/html2text
@@ -23,30 +28,55 @@ user_api_key = API_KEY
 so = stackexchange.Site(stackexchange.StackOverflow, app_key=user_api_key, impose_throttling=True)
 so.be_inclusive()
 
+def promptUser(prompt):
+    response = raw_input(prompt)
+    return response
+
+def focusQuestion(questions, count):
+    userInput = '0'
+    #Looping while the user wants to see more input
+    while(userInput != 'm'):
+        userInput = promptUser("Press m for more, or a number to selectL: ")
+        if(userInput == 'm'):
+            break
+        if(0 < int(userInput) and int(userInput) <= count):
+            print("\n\n\n\n\n\n")
+            printFullQuestion(questions[int(userInput)- 1])
+            branchInput = '0'   #user deciding whether to branch to open browser, or to return to search
+            while(branchInput != 'x'):
+                branchInput = promptUser("Press b to launch browser, or x to return to search: ")
+                if(branchInput == 'b'):
+                    webbrowser.open(questions[int(userInput)-1].json['link'], new=0, autoraise=True)
+            #User selects x to return to search
+            if(branchInput == 'x'):
+                print("\n\n\n\n\n\n\n\n\n\n\n\n")
+                #Ranging over the 5 questions including the user's choice
+                for j in range(5*int((int(userInput)-1)/5), 5*int((int(userInput)-1)/5)+5):
+                    printQuestion(questions[j], j+1)
+                continue   #exit the inner while loop
+
 def searchTerm(term):
     print('Searching for: %s... \n' % term,)
     questions = so.search_advanced(q = term, sort = Sort.Votes)
     j = 0
     count = 0
+    questionLogs = list()
     while(j < len(questions)):
         question = questions[j]
         if 'accepted_answer_id' in question.json:
             count+=1
             printQuestion(question, count)
+            questionLogs.append(question)
             if(count % NUM_RESULTS == 0):
-                more = raw_input("Press m for more, or a number to select: ")
-                if(more == 'm'):
-                    print('\n')
-                    continue
+                focusQuestion(questionLogs, count)
         j+=1
 
 
 def printQuestion(question, count):
-    questionurl = question.json['link']
-    answerid = question.json['accepted_answer_id']
     #questionurl gives the url of the SO question
     #the answer is under id "answer-answerid", and text of answer is in class post-text
-
+    questionurl = question.json['link']
+    answerid = question.json['accepted_answer_id']
     # Pulls the html from the StackOverflow site, converts to Beautiful Soup
     response = requests.get(questionurl)
     soup = bs4.BeautifulSoup(response.text)
@@ -54,24 +84,49 @@ def printQuestion(question, count):
     # Gets the p string -- do al answers follow this format, or do some have more info?
     print(str(count) + "\n" + "Question: " + question.title + "\nAnswer: " + h.handle(soup.find("div", {"id": "answer-"+str(answerid)}).p.prettify()) + "\n")
 
-def getTerm(args):
+def getTerm(parser):
     term = ""
-    if len(args) < 2:
-        term = raw_input('Please provide a search term:')
-    elif(args[1] == "-stderr"):
-        for line in args[2].splitlines():
-            term = line
-        print("Term is: " + term)
-    else:
-        term = ' '.join(args[1:])
+    pArgs = parser.parse_args()
+    if(pArgs.search):
+        term += (pArgs.search + " ")
+    if(pArgs.stderr):
+        print(pArgs.stderr)
+        process = subprocess.Popen(pArgs.stderr, stderr=subprocess.PIPE)
+        output = process.communicate()[1]
+        term += (output.splitlines()[-1] + " ")
     return term
 
-def getFullAnswer(soup, answerid):
+def printFullQuestion(question):
+    questionurl = question.json['link']
+    answerid = question.json['accepted_answer_id']
+    response = requests.get(questionurl)
+    soup = bs4.BeautifulSoup(response.text)
     # Focuses on the single div with the matching answerid--necessary b/c bs4 is quirky
     for answerdiv in soup.find_all('div', attrs={'id': 'answer-'+str(answerid)}):
         # Return printable text div--the contents of the answer
         # This isn't perfect; things like code indentation aren't pretty at all
-        return foo.find('div', attrs={'class': 'post-text'})
+        #print(answerdiv.find('div', attrs={'class': 'post-text'}))
+        answertext = h.handle(answerdiv.find('div', attrs={'class': 'post-text'}).prettify())
+    for cell in soup.find_all('td', attrs={'class': 'postcell'}):
+        questiontext = h.handle(cell.find('div', attrs={'class': 'post-text'}).prettify())
+    print("-------------------------QUESTION------------------------\n" + question.title + "\n" + questiontext 
+        + "\n\n-------------------------------ANSWER------------------------------------\n" + answertext)
+
+def searchVerbose(term):
+    questions = so.search_advanced(q = term, sort = Sort.Votes)
+    question = questions[0]
+    questionurl = question.json['link']
+    answerid = question.json['accepted_answer_id']
+    printFullQuestion(question)
+    
+
+def getParser():
+    parser = argparse.ArgumentParser(description="Parses command-line arguments for StackIt")
+    parser.add_argument("--verbose", help="displays full text of most relevant question and answer", action="store_true")
+    parser.add_argument("--version", help="displays the version", action = "store_true")
+    parser.add_argument("-e", "--stderr", metavar="EXECUTE", help="Runs an executable command (i.e. python script.py) and automatically inputs error message to StackOverflow")
+    parser.add_argument("-s", "--search", metavar="QUERY", help="Searches StackOverflow for your query") 
+    return parser
 
 class pColor:
     # Want to eliminate these that won't be used!
@@ -101,8 +156,18 @@ class pColor:
 
 
 def main():
-    term = getTerm(sys.argv)
-    searchTerm(term)
+    parser = getParser()
+    args = parser.parse_args()
+    if(args.version):
+        print("Version "+VERSION_NUM)
+        return
+    term = getTerm(parser)
+    if(parser.parse_args().verbose):
+        searchVerbose(term)
+    else:
+        searchTerm(term)
     sys.stdout.flush()
 
+if __name__ == '__main__':
+    main()
     
