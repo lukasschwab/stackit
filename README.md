@@ -14,10 +14,6 @@ The essential sidekick to any superhero developer. <br />
 ***
 
 ## Features
-<p align="center">
-
-<img src="http://i.giphy.com/3rgXBA2qoAawH6bAjK.gif">
-</p>
 
 + Written entirely in Python
 + Works on Mac, Windows and Linux
@@ -51,6 +47,8 @@ Note, depending on your computer's settings, you may need to `sudo python setup.
 ## Usage
 
 The install process establishes an alias, `stackit`, for stackit_core.py's functionality. Instead of using `python stackit_core.py`, you will *always* simply use `stackit` at the command prompt.
+
+<p align="center"><img src="http://i.giphy.com/3rgXBA2qoAawH6bAjK.gif"></p>
 
 ### Command line arguments
 + none: version splash page // usage
