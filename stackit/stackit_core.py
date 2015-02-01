@@ -36,7 +36,7 @@ def focusQuestion(questions, count):
     userInput = '0'
     #Looping while the user wants to see more input
     while(userInput != 'm'):
-        userInput = promptUser("Press m for more, or a number to selectL: ")
+        userInput = promptUser("Press m for more, or a number to select: ")
         if(userInput == 'm'):
             break
         if(0 < int(userInput) and int(userInput) <= count):
@@ -55,9 +55,13 @@ def focusQuestion(questions, count):
                     printQuestion(questions[j], j+1)
                 continue   #exit the inner while loop
 
-def searchTerm(term):
+def searchTerm(term, tags):
     print('Searching for: %s... \n' % term,)
-    questions = so.search_advanced(q = term, sort = Sort.Votes)
+    print('Tags: ',)
+    for tag in tags:
+        print(tag + " ",)
+    print("\n")
+    questions = so.search_advanced(q = term, tagged = tags, sort = Sort.Votes)
     j = 0
     count = 0
     questionLogs = list()
@@ -71,7 +75,6 @@ def searchTerm(term):
                 focusQuestion(questionLogs, count)
         j+=1
 
-
 def printQuestion(question, count):
     #questionurl gives the url of the SO question
     #the answer is under id "answer-answerid", and text of answer is in class post-text
@@ -82,7 +85,7 @@ def printQuestion(question, count):
     soup = bs4.BeautifulSoup(response.text)
     # Prints the accepted answer div, concatonated "answer-" and answerid
     # Gets the p string -- do al answers follow this format, or do some have more info?
-    print(str(count) + "\n" + "Question: " + question.title + "\nAnswer: " + h.handle(soup.find("div", {"id": "answer-"+str(answerid)}).p.prettify()) + "\n")
+    print(str(count) + "\nQuestion: " + question.title + "\nAnswer: " + h.handle(soup.find("div", {"id": "answer-"+str(answerid)}).p.prettify()) + "\n")
 
 def getTerm(parser):
     term = ""
@@ -90,11 +93,16 @@ def getTerm(parser):
     if(pArgs.search):
         term += (pArgs.search + " ")
     if(pArgs.stderr):
-        print(pArgs.stderr)
         process = subprocess.Popen(pArgs.stderr, stderr=subprocess.PIPE)
         output = process.communicate()[1]
         term += (output.splitlines()[-1] + " ")
     return term
+
+def getTags(parser):
+    pArgs = parser.parse_args()
+    tags = pArgs.tag.split()
+    return tags
+
 
 def printFullQuestion(question):
     questionurl = question.json['link']
@@ -122,10 +130,11 @@ def searchVerbose(term):
 
 def getParser():
     parser = argparse.ArgumentParser(description="Parses command-line arguments for StackIt")
+    parser.add_argument("-s", "--search", metavar="QUERY", help="Searches StackOverflow for your query") 
+    parser.add_argument("-e", "--stderr", metavar="EXECUTE", help="Runs an executable command (i.e. python script.py) and automatically inputs error message to StackOverflow")
+    parser.add_argument("-t", "--tag", metavar="TAG1 TAG2", help="Searches StackOverflow for your tags")
     parser.add_argument("--verbose", help="displays full text of most relevant question and answer", action="store_true")
     parser.add_argument("--version", help="displays the version", action = "store_true")
-    parser.add_argument("-e", "--stderr", metavar="EXECUTE", help="Runs an executable command (i.e. python script.py) and automatically inputs error message to StackOverflow")
-    parser.add_argument("-s", "--search", metavar="QUERY", help="Searches StackOverflow for your query") 
     return parser
 
 class pColor:
@@ -158,16 +167,21 @@ class pColor:
 def main():
     parser = getParser()
     args = parser.parse_args()
+    if not len(sys.argv) > 1:
+        parser.print_help()
+        return
     if(args.version):
         print("Version "+VERSION_NUM)
         return
     term = getTerm(parser)
+    if(args.tag):
+        tags = getTags(parser)
+    else:
+        tags = []
     if(parser.parse_args().verbose):
         searchVerbose(term)
     else:
-        searchTerm(term)
-    sys.stdout.flush()
+        searchTerm(term, tags)
 
 if __name__ == '__main__':
     main()
-    
