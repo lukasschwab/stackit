@@ -1,7 +1,5 @@
 # [stackit](http://www.stackitfor.me)
-
 <p align="center">
-
 The essential sidekick to any superhero developer. <br />
 
 <b>stackit</b> sends smart StackOverflow queries from your command line. <br />
