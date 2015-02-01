@@ -29,7 +29,7 @@ There are two ways to install stackit. Both should have roughly the same outcome
 
 **1. PyPI/pip**
 
-This method will always produce some stable build, but may not be the most up to dat version. New functionality will come slower than building from this repo.
+This method will always produce some stable build, but may not be the most up to date version. New functionality will come slower than building from this repo.
 
     $ pip install stackit
 
