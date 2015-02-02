@@ -68,7 +68,7 @@ The install process establishes an alias, `stackit`, for stackit_core.py's funct
 ### Examples
 To search Stack Overflow for "How do I create a bash alias" with the tags, "shell";
 
-    $ stackit -s"How do I create a bash alias?" -t "shell"
+    $ stackit -s "How do I create a bash alias?" -t "shell"
 More examples on [our website](http://www.stackitfor.me)
 
 ## Thanks

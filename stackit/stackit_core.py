@@ -16,6 +16,8 @@ import os
 import re
 
 NUM_RESULTS = 5
+# API key is public, according to SO documentation
+# (link?)
 API_KEY = "3GBT2vbKxgh*ati7EBzxGA(("
 VERSION_NUM = "0.1.2"
 
@@ -145,27 +147,7 @@ class pColor:
     # Want to eliminate these that won't be used!
     END =           '\033[0m'
     # Colors
-    PURPLEBLUE =    '\033[34m'
-    MISTGREY =      '\033[20m'
-    PURPLE =        '\033[35m'
-    CYAN =          '\033[36m'
-    LIGHTGREY =     '\033[37m'
-    DARKGREY =      '\033[90m'
-    LIGHTRED =      '\033[91m'
-    LIGHTGREEN =    '\033[92m'
-    LIGHTBLUE =     '\033[94m'
-    PINK =          '\033[95m'
     BLUE =          '\033[94m'
-    GREEN =         '\033[92m'
-    YELLOW =        '\033[93m'
-    RED =           '\033[91m'
-    # Formatting
-    BOLD =          '\033[1m'
-    UNDERLINE =     '\033[4m'
-    REVERSE =       '\033[07m'
-    STRIKETHROUGH = '\033[09m'
-    INVISIBLE =     '\033[08m'
-    INVISIBLE2 =    '\033[02m'
 
 
 def main():
