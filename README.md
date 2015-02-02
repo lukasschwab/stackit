@@ -83,9 +83,11 @@ This project is possible because of several other pre-existing projects and thei
 
 ## Contributing
 
-Contribution instructions coming soon.
+Contribution instructions coming soon!
 
-For now, *hands off*.
+Feel free to fork and modify, but get a conversation going with us before submitting a pull request or something.
+
+Also, we love issue submissions!
 
 ### Contributors
 + [Vicki Niu](https://github.com/vickiniu)
