@@ -83,11 +83,15 @@ This project is possible because of several other pre-existing projects and thei
 
 ## Contributing
 
-Contribution instructions coming soon!
+We <3 issue submissions, and address your problem as quickly as possible!
 
-Feel free to fork and modify, but get a conversation going with us before submitting a pull request or something.
+If you want to write code:
 
-Also, we love issue submissions!
+1. Fork the repository
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'add some feature`)
+4. Push to your branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
 
 ### Contributors
 + [Vicki Niu](https://github.com/vickiniu)
