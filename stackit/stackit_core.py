@@ -63,8 +63,10 @@ def focusQuestion(questions, count):
                             sys.exit()
                     except:
                         if (branchInput != 'q'):
-                            print("The input entered was not recognized as a valid choice.  Exiting...")
-                        sys.exit()
+                            print("The input entered was not recognized as a valid choice.")
+                            continue
+                        else:
+                            sys.exit()
                 #User selects x to return to search
                 if(branchInput == 'x'):
                     print("\n\n\n\n\n\n\n\n\n\n\n\n")
@@ -76,8 +78,10 @@ def focusQuestion(questions, count):
                 print('Invalid number entered, please enter a number between 0 and {}'.format(str(count)))
         except:
             if (userInput != 'q'):
-                print("The input entered was not recognized as a valid choice.  Exiting...")
-            sys.exit()
+                print("The input entered was not recognized as a valid choice.")
+                continue
+            else:
+                sys.exit()
 
 def searchTerm(term, tags):
     print('Searching for: %s... \n' % term,)
