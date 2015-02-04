@@ -50,9 +50,21 @@ def focusQuestion(questions, count):
                 printFullQuestion(questions[int(userInput)- 1])
                 branchInput = '0'   #user deciding whether to branch to open browser, or to return to search
                 while(branchInput != 'x'):
-                    branchInput = promptUser("Enter b to launch browser, or x to return to search: ")
-                    if(branchInput == 'b'):
-                        webbrowser.open(questions[int(userInput)-1].json['link'], new=0, autoraise=True)
+                    branchInput = promptUser("Enter b to launch browser, x to return to search, or q to exit: ")
+                    try:
+                        if (branchInput == 'x'):
+                            break
+                        elif(branchInput == 'q'):
+                            userInput = 'q'
+                            sys.exit()
+                        elif(branchInput == 'b'):
+                            webbrowser.open(questions[int(userInput)-1].json['link'], new=0, autoraise=True)
+                        else:
+                            sys.exit()
+                    except:
+                        if (branchInput != 'q'):
+                            print("The input entered was not recognized as a valid choice.  Exiting...")
+                        sys.exit()
                 #User selects x to return to search
                 if(branchInput == 'x'):
                     print("\n\n\n\n\n\n\n\n\n\n\n\n")
@@ -60,6 +72,8 @@ def focusQuestion(questions, count):
                     for j in range(5*int((int(userInput)-1)/5), 5*int((int(userInput)-1)/5)+5):
                         printQuestion(questions[j], j+1)
                     continue   #exit the inner while loop
+            else:
+                print('Invalid number entered, please enter a number between 0 and {}'.format(str(count)))
         except:
             if (userInput != 'q'):
                 print("The input entered was not recognized as a valid choice.  Exiting...")
