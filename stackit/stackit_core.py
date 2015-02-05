@@ -103,15 +103,12 @@ def searchTerm(term, tags):
                 focusQuestion(questionLogs, count)
         j+=1
     if len(questions) == 0:
-        response = raw_input("No questions found matching your input. Try broader search terms. \nPress s to search again, b to enter browser or x to exit: ")
-        if response == "x":
-            sys.exit()
-        elif response == "b":
-            webbrowser.open("https://stackoverflow.com")
-        elif response == "s":
-            searchTerms = raw_input("Enter search terms: ")
-            os.system('stackit %s' % searchTerms)
-    
+            response = raw_input(pColor.WARNING + "No questions found matching your input 'Term: {0} Tags: {1}' Try broader search terms.\nPress b to enter browser or x to exit: " + pColor.END.format(term," ".join(tags)))
+            if response == "x":
+                sys.exit()
+            elif response == "b":
+                webbrowser.open("https://stackoverflow.com/search?q={0}{1}".format(term, " ".join(tags)))
+                                 
         
 def printQuestion(question, count):
     #questionurl gives the url of the SO question
@@ -184,6 +181,7 @@ class pColor:
     END =           '\033[0m'
     # Colors
     BLUE =          '\033[94m'
+    WARNING =       '\033[31m'
 
 
 def main():
