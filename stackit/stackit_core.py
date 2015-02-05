@@ -39,24 +39,49 @@ def focusQuestion(questions, count):
     userInput = '0'
     #Looping while the user wants to see more input
     while(userInput != 'm'):
-        userInput = promptUser("Press m for more, or a number to select: ")
-        if(userInput == 'm'):
-            break
-        if(0 < int(userInput) and int(userInput) <= count):
-            print("\n\n\n\n\n\n")
-            printFullQuestion(questions[int(userInput)- 1])
-            branchInput = '0'   #user deciding whether to branch to open browser, or to return to search
-            while(branchInput != 'x'):
-                branchInput = promptUser("Press b to launch browser, or x to return to search: ")
-                if(branchInput == 'b'):
-                    webbrowser.open(questions[int(userInput)-1].json['link'], new=0, autoraise=True)
-            #User selects x to return to search
-            if(branchInput == 'x'):
-                print("\n\n\n\n\n\n\n\n\n\n\n\n")
-                #Ranging over the 5 questions including the user's choice
-                for j in range(5*int((int(userInput)-1)/5), 5*int((int(userInput)-1)/5)+5):
-                    printQuestion(questions[j], j+1)
-                continue   #exit the inner while loop
+        userInput = promptUser("Enter m for more, a question number to select, or q to exit: ")
+        try:
+            if(userInput == 'q'):
+                sys.exit()
+            if(userInput == 'm'):
+                break
+            if(0 < int(userInput) and int(userInput) <= count):
+                print("\n\n\n\n\n\n")
+                printFullQuestion(questions[int(userInput)- 1])
+                branchInput = '0'   #user deciding whether to branch to open browser, or to return to search
+                while(branchInput != 'x'):
+                    branchInput = promptUser("Enter b to launch browser, x to return to search, or q to exit: ")
+                    try:
+                        if (branchInput == 'x'):
+                            break
+                        elif(branchInput == 'q'):
+                            userInput = 'q'
+                            sys.exit()
+                        elif(branchInput == 'b'):
+                            webbrowser.open(questions[int(userInput)-1].json['link'], new=0, autoraise=True)
+                        else:
+                            sys.exit()
+                    except:
+                        if (branchInput != 'q'):
+                            print("The input entered was not recognized as a valid choice.")
+                            continue
+                        else:
+                            sys.exit()
+                #User selects x to return to search
+                if(branchInput == 'x'):
+                    print("\n\n\n\n\n\n\n\n\n\n\n\n")
+                    #Ranging over the 5 questions including the user's choice
+                    for j in range(5*int((int(userInput)-1)/5), 5*int((int(userInput)-1)/5)+5):
+                        printQuestion(questions[j], j+1)
+                    continue   #exit the inner while loop
+            else:
+                print('Invalid number entered, please enter a number between 0 and {}'.format(str(count)))
+        except:
+            if (userInput != 'q'):
+                print("The input entered was not recognized as a valid choice.")
+                continue
+            else:
+                sys.exit()
 
 def searchTerm(term, tags):
     print('Searching for: %s... \n' % term,)
@@ -124,7 +149,7 @@ def printFullQuestion(question):
         answertext = h.handle(answerdiv.find('div', attrs={'class': 'post-text'}).prettify())
     for cell in soup.find_all('td', attrs={'class': 'postcell'}):
         questiontext = h.handle(cell.find('div', attrs={'class': 'post-text'}).prettify())
-    print(pColor.BLUE + "-------------------------QUESTION------------------------\n" + question.title + "\n" + questiontext 
+    print(pColor.BLUE + "-------------------------QUESTION------------------------\n" + question.title + "\n" + questiontext
         + pColor.END + "\n\n-------------------------------ANSWER------------------------------------\n" + answertext)
 
 def searchVerbose(term):
@@ -133,11 +158,11 @@ def searchVerbose(term):
     questionurl = question.json['link']
     answerid = question.json['accepted_answer_id']
     printFullQuestion(question)
-    
+
 
 def getParser():
     parser = argparse.ArgumentParser(description="Parses command-line arguments for StackIt")
-    parser.add_argument("-s", "--search", metavar="QUERY", help="Searches StackOverflow for your query") 
+    parser.add_argument("-s", "--search", metavar="QUERY", help="Searches StackOverflow for your query")
     parser.add_argument("-e", "--stderr", metavar="EXECUTE", help="Runs an executable command (i.e. python script.py) and automatically inputs error message to StackOverflow")
     parser.add_argument("-t", "--tag", metavar="TAG1 TAG2", help="Searches StackOverflow for your tags")
     parser.add_argument("--verbose", help="displays full text of most relevant question and answer", action="store_true")
