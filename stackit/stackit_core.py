@@ -59,12 +59,13 @@ def focusQuestion(questions, count):
                 continue   #exit the inner while loop
 
 def searchTerm(term, tags):
-    print('Searching for: %s... \n' % term,)
+    print('Searching for: %s... \n' % term)
     print('Tags: ',)
     for tag in tags:
         print(tag + " ",)
     print("\n")
     questions = so.search_advanced(q = term, tagged = tags, sort = Sort.Votes)
+    
     j = 0
     count = 0
     questionLogs = list()
@@ -77,7 +78,17 @@ def searchTerm(term, tags):
             if(count % NUM_RESULTS == 0):
                 focusQuestion(questionLogs, count)
         j+=1
-
+    if len(questions) == 0:
+        response = raw_input("No questions found matching your input. Try broader search terms. \nPress s to search again, b to enter browser or x to exit: ")
+        if response == "x":
+            sys.exit()
+        elif response == "b":
+            webbrowser.open("https://stackoverflow.com")
+        elif response == "s":
+            searchTerms = raw_input("Enter search terms: ")
+            os.system('stackit %s' % searchTerms)
+    
+        
 def printQuestion(question, count):
     #questionurl gives the url of the SO question
     #the answer is under id "answer-answerid", and text of answer is in class post-text
