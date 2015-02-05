@@ -16,7 +16,7 @@ The essential sidekick to any superhero developer. <br />
 ## Features
 
 + Written entirely in Python
-+ Works on Mac, Windows and Linux
++ Works on UNIX (Mac OS X, Linux); Windows support coming eventually!
 + Automatically pipes error messages into StackOverflow queries
 + Parses and displays relevant questions and answers directly on the command line in reader-friendly markdown format
 
