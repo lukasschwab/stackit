@@ -63,7 +63,7 @@ def focusQuestion(questions, count):
                             sys.exit()
                     except:
                         if (branchInput != 'q'):
-                            print("The input entered was not recognized as a valid choice.")
+                            print(pColor.RED + "The input entered was not recognized as a valid choice." + pColor.END)
                             continue
                         else:
                             sys.exit()
@@ -75,10 +75,10 @@ def focusQuestion(questions, count):
                         printQuestion(questions[j], j+1)
                     continue   #exit the inner while loop
             else:
-                print('Invalid number entered, please enter a number between 0 and {}'.format(str(count)))
+                print(pColor.RED + 'Invalid number entered, please enter a number between 0 and {}'.format(str(count)) + pColor.END)
         except:
             if (userInput != 'q'):
-                print("The input entered was not recognized as a valid choice.")
+                print(pColor.RED + "The input entered was not recognized as a valid choice." + pColor.END)
                 continue
             else:
                 sys.exit()
@@ -170,10 +170,11 @@ def getParser():
     return parser
 
 class pColor:
-    # Want to eliminate these that won't be used!
+    # https://github.com/ilovecode1/pyfancy/blob/master/pyfancy.py
     END =           '\033[0m'
     # Colors
     BLUE =          '\033[94m'
+    RED =           '\033[91m'
 
 
 def main():
