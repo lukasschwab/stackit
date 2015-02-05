@@ -171,10 +171,15 @@ def getParser():
 
 class pColor:
     # https://github.com/ilovecode1/pyfancy/blob/master/pyfancy.py
-    END =           '\033[0m'
-    # Colors
-    BLUE =          '\033[94m'
-    RED =           '\033[91m'
+    if not os.name == 'nt':
+      END =           '\033[0m'
+      # Colors
+      BLUE =          '\033[94m'
+      RED =           '\033[91m'
+    else:
+      END = ''
+      BLUE = ''
+      RED = ''
 
 
 def main():
