@@ -84,13 +84,12 @@ def focusQuestion(questions, count):
                 sys.exit()
 
 def searchTerm(term, tags):
-    print('Searching for: %s... \n' % term)
+    print('Searching for: %s... \n' % term,)
     print('Tags: ',)
     for tag in tags:
         print(tag + " ",)
     print("\n")
     questions = so.search_advanced(q = term, tagged = tags, sort = Sort.Votes)
-    
     j = 0
     count = 0
     questionLogs = list()
