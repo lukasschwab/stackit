@@ -16,7 +16,7 @@ The essential sidekick to any superhero developer. <br />
 ## Features
 
 + Written entirely in Python
-+ Works on Mac, Windows and Linux
++ Works on UNIX (Mac OS X, Linux); Windows support coming eventually!
 + Automatically pipes error messages into StackOverflow queries
 + Parses and displays relevant questions and answers directly on the command line in reader-friendly markdown format
 
@@ -89,7 +89,7 @@ If you want to write code:
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'add some feature`)
+3. Commit your changes (`git commit -am 'add some feature'`)
 4. Push to your branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
 
