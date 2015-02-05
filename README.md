@@ -104,4 +104,4 @@ If you want to write code:
 
 #### Pull Requests
 
-+ [Phil (schwartzmx)](https://github.com/schwartzmx): [pull request](https://github.com/lukasschwab/stackit/commit/ba0a8dbcc8e7d9b1f2be447c548c1de80b286d94)
++ [Phil (schwartzmx)](https://github.com/schwartzmx): [#4](https://github.com/lukasschwab/stackit/pull/4), [#6](https://github.com/lukasschwab/stackit/pull/6)
