@@ -15,6 +15,11 @@ import bs4
 import os
 import re
 
+
+get_input = input
+if sys.version_info[:2] < (3, 0):
+    get_input = raw_input
+
 NUM_RESULTS = 5
 # API key is public, according to SO documentation
 # (link?)
@@ -32,7 +37,7 @@ so = stackexchange.Site(stackexchange.StackOverflow, app_key=user_api_key, impos
 so.be_inclusive()
 
 def promptUser(prompt):
-    response = raw_input(prompt)
+    response = get_input(prompt)
     return response
 
 def focusQuestion(questions, count):
