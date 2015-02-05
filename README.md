@@ -94,7 +94,14 @@ If you want to write code:
 5. Create a new Pull Request
 
 ### Contributors
+
+#### OG (SB Hacks 2015 Crew)
+
 + [Vicki Niu](https://github.com/vickiniu)
 + [Leilani Reyes](https://github.com/lanidelrey)
 + [Eni Asebiomo](https://github.com/eniasebiomo)
 + [Lukas Schwab](https://github.com/lukasschwab)
+
+#### Pull Requests
+
++ [Phil](https://github.com/schwartzmx): [pull request](https://github.com/lukasschwab/stackit/commit/ba0a8dbcc8e7d9b1f2be447c548c1de80b286d94)
