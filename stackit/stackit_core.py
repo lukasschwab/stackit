@@ -161,8 +161,6 @@ def printFullQuestion(question):
 def searchVerbose(term):
     questions = so.search_advanced(q=term, sort=Sort.Votes)
     question = questions[0]
-    questionurl = question.json['link']
-    answerid = question.json['accepted_answer_id']
     printFullQuestion(question)
 
 
