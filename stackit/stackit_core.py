@@ -127,7 +127,7 @@ def getTerm(parser):
         filename = (os.getcwd()).replace(' ','\ ') + "/" + commandlist[1]
         process = subprocess.Popen(command + " " + filename, stderr=subprocess.PIPE, shell=True)
         output = process.communicate()[1]
-        term += (output.splitlines()[-1] + " ")
+        term += (output.splitlines()[-1] + bytes(" ", "ascii"))
     return term
 
 def getTags(parser):
