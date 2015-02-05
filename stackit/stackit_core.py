@@ -103,7 +103,7 @@ def searchTerm(term, tags):
                 focusQuestion(questionLogs, count)
         j+=1
     if len(questions) == 0:
-            response = raw_input(pColor.WARNING + "No questions found matching your input 'Term: {0} Tags: {1}' Try broader search terms.\nPress b to enter browser or x to exit: " + pColor.END.format(term," ".join(tags)))
+            response = raw_input(pColor.RED + "No questions found matching your input 'Term: {0} Tags: {1}' Try broader search terms.\nPress b to enter browser or x to exit: " + pColor.END.format(term," ".join(tags)))
             if response == "x":
                 sys.exit()
             elif response == "b":
