@@ -10,10 +10,8 @@ import requests
 import webbrowser
 import subprocess
 import argparse
-import math
 import bs4
 import os
-import re
 
 NUM_RESULTS = 5
 # API key is public, according to SO documentation
