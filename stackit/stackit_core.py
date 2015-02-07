@@ -43,7 +43,7 @@ def focusQuestion(questions, count):
     userInput = '0'
     # Looping while the user wants to see more input
     while(userInput != 'm'):
-        userInput = promptUser("Enter m for more, a question number to select, or q to exit: ")
+        userInput = promptUser("Enter m for more, a question number to select, or q to quit: ")
         try:
             if(userInput == 'q'):
                 sys.exit()
@@ -54,7 +54,7 @@ def focusQuestion(questions, count):
                 printFullQuestion(questions[int(userInput) - 1])
                 branchInput = '0'   # user deciding whether to branch to open browser, or to return to search
                 while(branchInput != 'x'):
-                    branchInput = promptUser("Enter b to launch browser, x to return to search, or q to exit: ")
+                    branchInput = promptUser("Enter b to launch browser, x to return to search, or q to quit: ")
                     try:
                         if (branchInput == 'x'):
                             break
