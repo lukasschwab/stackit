@@ -16,9 +16,8 @@ import os
 import re
 
 
-get_input = input
 if sys.version_info[:2] < (3, 0):
-    get_input = raw_input
+    input = raw_input
 
 NUM_RESULTS = 5
 # API key is public, according to SO documentation
@@ -37,7 +36,7 @@ so = stackexchange.Site(stackexchange.StackOverflow, app_key=user_api_key, impos
 so.be_inclusive()
 
 def promptUser(prompt):
-    response = get_input(prompt)
+    response = input(prompt)
     return response
 
 def focusQuestion(questions, count):
@@ -132,7 +131,7 @@ def getTerm(parser):
         filename = (os.getcwd()).replace(' ','\ ') + "/" + commandlist[1]
         process = subprocess.Popen(command + " " + filename, stderr=subprocess.PIPE, shell=True)
         output = process.communicate()[1]
-        term += (output.splitlines()[-1] + bytes(" ", "ascii"))
+        term += (str(output.splitlines()[-1]) + " ")
     return term
 
 def getTags(parser):
