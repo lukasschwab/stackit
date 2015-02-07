@@ -13,6 +13,10 @@ import argparse
 import bs4
 import os
 
+# Import and initialize colorama
+from colorama import init, Fore
+init()
+
 NUM_RESULTS = 5
 # API key is public, according to SO documentation
 # (link?)
@@ -63,7 +67,7 @@ def focusQuestion(questions, count):
                             sys.exit()
                     except:
                         if (branchInput != 'q'):
-                            print(pColor.RED + "The input entered was not recognized as a valid choice." + pColor.END)
+                            print(Fore.RED + "The input entered was not recognized as a valid choice." + Fore.RESET)
                             continue
                         else:
                             sys.exit()
@@ -75,10 +79,10 @@ def focusQuestion(questions, count):
                         printQuestion(questions[j], j + 1)
                     continue   # exit the inner while loop
             else:
-                print(pColor.RED + 'Invalid number entered, please enter a number between 0 and {}'.format(str(count)) + pColor.END)
+                print(Fore.RED + 'Invalid number entered, please enter a number between 0 and {}'.format(str(count)) + Fore.RESET)
         except:
             if (userInput != 'q'):
-                print(pColor.RED + "The input entered was not recognized as a valid choice." + pColor.END)
+                print(Fore.RED + "The input entered was not recognized as a valid choice." + Fore.RESET)
                 continue
             else:
                 sys.exit()
@@ -115,7 +119,7 @@ def printQuestion(question, count):
     soup = bs4.BeautifulSoup(response.text)
     # Prints the accepted answer div, concatonated "answer-" and answerid
     # Gets the p string -- do al answers follow this format, or do some have more info?
-    print(pColor.BLUE + str(count) + "\n" + "Question: " + question.title + pColor.END + "\nAnswer: " + h.handle(soup.find("div", {"id": "answer-" + str(answerid)}).p.prettify()) + "\n")
+    print(Fore.BLUE + str(count) + "\n" + "Question: " + question.title + Fore.RESET + "\nAnswer: " + h.handle(soup.find("div", {"id": "answer-" + str(answerid)}).p.prettify()) + "\n")
 
 
 def getTerm(parser):
@@ -154,8 +158,8 @@ def printFullQuestion(question):
     for cell in soup.find_all('td', attrs={'class': 'postcell'}):
         questiontext = h.handle(cell.find('div', attrs={'class': 'post-text'}).prettify())
     print(
-        pColor.BLUE + "-------------------------QUESTION------------------------\n" + question.title + "\n" + questiontext
-        + pColor.END + "\n\n-------------------------------ANSWER------------------------------------\n" + answertext)
+        Fore.BLUE + "-------------------------QUESTION------------------------\n" + question.title + "\n" + questiontext
+        + Fore.RESET + "\n\n-------------------------------ANSWER------------------------------------\n" + answertext)
 
 
 def searchVerbose(term):
@@ -172,20 +176,6 @@ def getParser():
     parser.add_argument("--verbose", help="displays full text of most relevant question and answer", action="store_true")
     parser.add_argument("--version", help="displays the version", action="store_true")
     return parser
-
-
-class pColor:
-    # https://github.com/ilovecode1/pyfancy/blob/master/pyfancy.py
-    if not os.name == 'nt':
-        END = '\033[0m'
-        # Colors
-        BLUE = '\033[94m'
-        RED = '\033[91m'
-    else:
-        END = ''
-        BLUE = ''
-        RED = ''
-
 
 def main():
     parser = getParser()

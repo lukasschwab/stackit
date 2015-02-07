@@ -12,6 +12,7 @@ setup(
         'requests',
         'beautifulsoup4',
         'html2text',
+        'colorama',
     ],
 
     # metadata for upload to PyPI
