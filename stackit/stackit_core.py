@@ -17,6 +17,10 @@ import os
 from colorama import init, Fore
 init()
 
+
+if sys.version_info[:2] < (3, 0):
+    input = raw_input
+
 NUM_RESULTS = 5
 # API key is public, according to SO documentation
 # (link?)
@@ -35,7 +39,7 @@ so.be_inclusive()
 
 
 def promptUser(prompt):
-    response = raw_input(prompt)
+    response = input(prompt)
     return response
 
 
@@ -134,7 +138,7 @@ def getTerm(parser):
         filename = (os.getcwd()).replace(' ', '\ ') + "/" + commandlist[1]
         process = subprocess.Popen(command + " " + filename, stderr=subprocess.PIPE, shell=True)
         output = process.communicate()[1]
-        term += (output.splitlines()[-1] + " ")
+        term += (str(output.splitlines()[-1]) + " ")
     return term
 
 
