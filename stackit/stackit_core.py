@@ -8,7 +8,6 @@ from stackexchange import Sort
 # The approved answer ID: 16800090
 
 import requests
-import webbrowser
 import subprocess
 import click
 import bs4
@@ -53,7 +52,7 @@ def select(questions, num):
     while working:
         user_input = click.prompt("Enter b to launch browser, x to return to search, or q to quit")
         if user_input == 'b':
-            webbrowser.open(questions[num - 1].json['link'], new=0, autoraise=True)
+            click.launch(questions[num - 1].json['link'])
         elif user_input == 'q':
             sys.exit()
         elif user_input == 'x':
