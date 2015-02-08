@@ -58,7 +58,7 @@ def select(questions, num):
         elif user_input == 'x':
             click.echo("\n" * 12)
             # Ranging over the 5 questions including the user's choice
-            for j in range(5 * int((num - 1) / 5), 5 * int((num - 1) / 5) + 5):
+            for j in range(num - 1, num - 1 + VERSION_NUM):
                 print_question(questions[j], j + 1)
             working = False
         else:
