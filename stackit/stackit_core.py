@@ -187,10 +187,10 @@ def main(config, search, stderr, tag, verbose, version):
 
     config.term = get_term(config)
 
-    if search or stderr:
-        _search(config)
-    elif verbose:
+    if verbose:
         search_verbose(config.term)
+    elif search or stderr:
+        _search(config)
     elif version:
         click.echo("Version {VERSION_NUM}".format(**globals()))
 
