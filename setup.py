@@ -12,7 +12,6 @@ setup(
         'requests',
         'beautifulsoup4',
         'html2text',
-        'colorama',
         'Click',
     ],
 
