@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from __future__ import print_function
+from __future__ import unicode_literals
 import sys
 import stackexchange
 from stackexchange import Sort
@@ -50,7 +51,7 @@ def select(questions, num):
     print_full_question(questions[num - 1])
     working = True
     while working:
-        user_input = input("Enter b to launch browser, x to return to search, or q to quit: ")
+        user_input = click.prompt("Enter b to launch browser, x to return to search, or q to quit")
         if user_input == 'b':
             webbrowser.open(questions[num - 1].json['link'], new=0, autoraise=True)
         elif user_input == 'q':
@@ -70,7 +71,7 @@ def select(questions, num):
 def focus_question(questions):
     working = True
     while working:
-        user_input = input("Enter m for more, a question number to select, or q to quit: ")
+        user_input = click.prompt("Enter m for more, a question number to select, or q to quit")
         if user_input == 'm':
             working = False
         elif user_input == 'q':
