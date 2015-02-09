@@ -58,7 +58,12 @@ def select(questions, num):
         elif user_input == 'x':
             click.echo("\n" * 12)
             # Ranging over the 5 questions including the user's choice
-            for j in range(num - 1, num - 1 + NUM_RESULTS):
+            origin = 0
+            if not num % NUM_RESULTS:
+                origin = num - NUM_RESULTS
+            else:
+                origin = num - num % NUM_RESULTS
+            for j in range(origin, origin + NUM_RESULTS):
                 print_question(questions[j], j + 1)
             working = False
         else:
@@ -116,7 +121,13 @@ def print_question(question, count):
     soup = bs4.BeautifulSoup(response.text)
     # Prints the accepted answer div, concatonated "answer-" and answerid
     # Gets the p string -- do al answers follow this format, or do some have more info?
-    answer = h.handle(soup.find("div", {"id": "answer-" + str(answerid)}).p.prettify())
+    answer = soup.find("div", {"id": "answer-" + str(answerid)}).p
+
+    if answer is None:
+        # handle case where no text is provide, just code, like: http://stackoverflow.com/a/1128728/1651228
+        answer = soup.find("div", {"id": "answer-" + str(answerid)}).find("div", {"class": "post-text"})
+
+    answer = h.handle(answer.prettify())
 
     click.echo(''.join([
         click.style(''.join([str(count), '\nQuestion: ', question.title]), fg='blue'),
