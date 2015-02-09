@@ -11,7 +11,6 @@ import requests
 import subprocess
 import click
 import bs4
-import os
 
 
 if sys.version_info[:2] < (3, 0):
@@ -139,13 +138,9 @@ def get_term(config):
     if config.search:
         return config.search
     elif config.stderr:
-        commandlist = config.stderr.split()
-        command = commandlist[0]
-        # Get current working directory and replace spaces with '\ ' to stop errors
-        filename = (os.getcwd()).replace(' ', '\ ') + "/" + commandlist[1]
-        process = subprocess.Popen(command + " " + filename, stderr=subprocess.PIPE, shell=True)
-        output = process.communicate()[1]
-        return (str(output.splitlines()[-1]) + " ")
+        process = subprocess.Popen(config.stderr, stderr=subprocess.PIPE, shell=True)
+        output = process.communicate()[1].splitlines()
+        return "" if not len(output) else str(output[-1])
     return ""
 
 
