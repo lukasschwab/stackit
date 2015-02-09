@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from __future__ import print_function
+from __future__ import unicode_literals
 import sys
 import stackexchange
 from stackexchange import Sort
@@ -7,15 +8,10 @@ from stackexchange import Sort
 # The approved answer ID: 16800090
 
 import requests
-import webbrowser
 import subprocess
-import argparse
+import click
 import bs4
 import os
-
-# Import and initialize colorama
-from colorama import init, Fore
-init()
 
 
 if sys.version_info[:2] < (3, 0):
@@ -38,82 +34,84 @@ so = stackexchange.Site(stackexchange.StackOverflow, app_key=user_api_key, impos
 so.be_inclusive()
 
 
-def promptUser(prompt):
-    response = input(prompt)
-    return response
+class Config():
+    """ Main configuration object """
+    def __init__(self):
+        self.search = False
+        self.stderr = False
+        self.tag = False
+        self.verbose = False
 
 
-def focusQuestion(questions, count):
-    userInput = '0'
-    # Looping while the user wants to see more input
-    while(userInput != 'm'):
-        userInput = promptUser("Enter m for more, a question number to select, or q to quit: ")
-        try:
-            if(userInput == 'q'):
-                sys.exit()
-            if(userInput == 'm'):
-                break
-            if(0 < int(userInput) and int(userInput) <= count):
-                print("\n\n\n\n\n\n")
-                printFullQuestion(questions[int(userInput) - 1])
-                branchInput = '0'   # user deciding whether to branch to open browser, or to return to search
-                while(branchInput != 'x'):
-                    branchInput = promptUser("Enter b to launch browser, x to return to search, or q to quit: ")
-                    try:
-                        if (branchInput == 'x'):
-                            break
-                        elif(branchInput == 'q'):
-                            userInput = 'q'
-                            sys.exit()
-                        elif(branchInput == 'b'):
-                            webbrowser.open(questions[int(userInput) - 1].json['link'], new=0, autoraise=True)
-                        else:
-                            sys.exit()
-                    except:
-                        if (branchInput != 'q'):
-                            print(Fore.RED + "The input entered was not recognized as a valid choice." + Fore.RESET)
-                            continue
-                        else:
-                            sys.exit()
-                # User selects x to return to search
-                if(branchInput == 'x'):
-                    print("\n\n\n\n\n\n\n\n\n\n\n\n")
-                    # Ranging over the 5 questions including the user's choice
-                    for j in range(5 * int((int(userInput) - 1) / 5), 5 * int((int(userInput) - 1) / 5) + 5):
-                        printQuestion(questions[j], j + 1)
-                    continue   # exit the inner while loop
+pass_config = click.make_pass_decorator(Config, ensure=True)
+
+
+def select(questions, num):
+    print_full_question(questions[num - 1])
+    working = True
+    while working:
+        user_input = click.prompt("Enter b to launch browser, x to return to search, or q to quit")
+        if user_input == 'b':
+            click.launch(questions[num - 1].json['link'])
+        elif user_input == 'q':
+            sys.exit()
+        elif user_input == 'x':
+            click.echo("\n" * 12)
+            # Ranging over the 5 questions including the user's choice
+            origin = 0
+            if not num % NUM_RESULTS:
+                origin = num - NUM_RESULTS
             else:
-                print(Fore.RED + 'Invalid number entered, please enter a number between 0 and {}'.format(str(count)) + Fore.RESET)
-        except:
-            if (userInput != 'q'):
-                print(Fore.RED + "The input entered was not recognized as a valid choice." + Fore.RESET)
-                continue
-            else:
-                sys.exit()
+                origin = num - num % NUM_RESULTS
+            for j in range(origin, origin + NUM_RESULTS):
+                print_question(questions[j], j + 1)
+            working = False
+        else:
+            click.echo(click.style(
+                "The input entered was not recognized as a valid choice.",
+                fg="red"))
 
 
-def searchTerm(term, tags):
-    print('Searching for: %s... \n' % term,)
-    print('Tags: ',)
-    for tag in tags:
-        print(tag + " ",)
-    print("\n")
-    questions = so.search_advanced(q=term, tagged=tags, sort=Sort.Votes)
-    j = 0
+def focus_question(questions):
+    working = True
+    while working:
+        user_input = click.prompt("Enter m for more, a question number to select, or q to quit")
+        if user_input == 'm':
+            working = False
+        elif user_input == 'q':
+            sys.exit()
+        elif user_input.isnumeric() and int(user_input) <= len(questions):
+            select(questions, int(user_input))
+        else:
+            click.echo(click.style(
+                "The input entered was not recognized as a valid choice.",
+                fg="red"))
+
+
+def _search(config):
+    # inform user
+    click.echo('Searching for: {0}...'.format(config.term))
+    click.echo('Tags: {0}'.format(config.tag))
+
+    questions = so.search_advanced(
+        q=config.term,
+        tagged=config.tag.split(),
+        sort=Sort.Votes)
+
     count = 0
-    questionLogs = list()
-    while(j < len(questions)):
-        question = questions[j]
+    question_logs = []
+    # quicker way for appending to list
+    add_to_logs = question_logs.append
+    for question in questions:
         if 'accepted_answer_id' in question.json:
             count += 1
-            printQuestion(question, count)
-            questionLogs.append(question)
-            if(count % NUM_RESULTS == 0):
-                focusQuestion(questionLogs, count)
-        j += 1
+            add_to_logs(question)
+            print_question(question, count)
+            if count % NUM_RESULTS == 0:
+                focus_question(question_logs)
 
 
-def printQuestion(question, count):
+def print_question(question, count):
     # questionurl gives the url of the SO question
     # the answer is under id "answer-answerid", and text of answer is in class post-text
     questionurl = question.json['link']
@@ -123,32 +121,35 @@ def printQuestion(question, count):
     soup = bs4.BeautifulSoup(response.text)
     # Prints the accepted answer div, concatonated "answer-" and answerid
     # Gets the p string -- do al answers follow this format, or do some have more info?
-    print(Fore.BLUE + str(count) + "\n" + "Question: " + question.title + Fore.RESET + "\nAnswer: " + h.handle(soup.find("div", {"id": "answer-" + str(answerid)}).p.prettify()) + "\n")
+    answer = soup.find("div", {"id": "answer-" + str(answerid)}).p
+
+    if answer is None:
+        # handle case where no text is provide, just code, like: http://stackoverflow.com/a/1128728/1651228
+        answer = soup.find("div", {"id": "answer-" + str(answerid)}).find("div", {"class": "post-text"})
+
+    answer = h.handle(answer.prettify())
+
+    click.echo(''.join([
+        click.style(''.join([str(count), '\nQuestion: ', question.title]), fg='blue'),
+        ''.join(['\nAnswer', answer]),
+    ]))
 
 
-def getTerm(parser):
-    term = ""
-    pArgs = parser.parse_args()
-    if(pArgs.search):
-        term += (pArgs.search + " ")
-    if(pArgs.stderr):
-        commandlist = pArgs.stderr.split()
+def get_term(config):
+    if config.search:
+        return config.search
+    elif config.stderr:
+        commandlist = config.stderr.split()
         command = commandlist[0]
         # Get current working directory and replace spaces with '\ ' to stop errors
         filename = (os.getcwd()).replace(' ', '\ ') + "/" + commandlist[1]
         process = subprocess.Popen(command + " " + filename, stderr=subprocess.PIPE, shell=True)
         output = process.communicate()[1]
-        term += (str(output.splitlines()[-1]) + " ")
-    return term
+        return (str(output.splitlines()[-1]) + " ")
+    return ""
 
 
-def getTags(parser):
-    pArgs = parser.parse_args()
-    tags = pArgs.tag.split()
-    return tags
-
-
-def printFullQuestion(question):
+def print_full_question(question):
     questionurl = question.json['link']
     answerid = question.json['accepted_answer_id']
     response = requests.get(questionurl)
@@ -161,44 +162,47 @@ def printFullQuestion(question):
         answertext = h.handle(answerdiv.find('div', attrs={'class': 'post-text'}).prettify())
     for cell in soup.find_all('td', attrs={'class': 'postcell'}):
         questiontext = h.handle(cell.find('div', attrs={'class': 'post-text'}).prettify())
-    print(
-        Fore.BLUE + "-------------------------QUESTION------------------------\n" + question.title + "\n" + questiontext
-        + Fore.RESET + "\n\n-------------------------------ANSWER------------------------------------\n" + answertext)
+
+    click.echo(''.join([
+        click.style(''.join([
+            "-------------------------QUESTION------------------------\n",
+            question.title, '\n', questiontext,
+        ]), fg='blue'),
+        ''.join([
+            "\n\n-------------------------------ANSWER------------------------------------\n",
+            answertext,
+        ]),
+    ]))
 
 
-def searchVerbose(term):
+def search_verbose(term):
     questions = so.search_advanced(q=term, sort=Sort.Votes)
     question = questions[0]
-    printFullQuestion(question)
+    print_full_question(question)
 
 
-def getParser():
-    parser = argparse.ArgumentParser(description="Parses command-line arguments for StackIt")
-    parser.add_argument("-s", "--search", metavar="QUERY", help="Searches StackOverflow for your query")
-    parser.add_argument("-e", "--stderr", metavar="EXECUTE", help="Runs an executable command (i.e. python script.py) and automatically inputs error message to StackOverflow")
-    parser.add_argument("-t", "--tag", metavar="TAG1 TAG2", help="Searches StackOverflow for your tags")
-    parser.add_argument("--verbose", help="displays full text of most relevant question and answer", action="store_true")
-    parser.add_argument("--version", help="displays the version", action="store_true")
-    return parser
+@click.command()
+@click.option("-s", "--search", default="", help="Searches StackOverflow for your query")
+@click.option("-e", "--stderr", default="", help="Runs an executable command (i.e. python script.py) and automatically inputs error message to StackOverflow")
+@click.option("-t", "--tag", default="", help="Searches StackOverflow for your tags")
+@click.option("--verbose", is_flag=True, help="displays full text of most relevant question and answer")
+@click.option("--version", is_flag=True, help="displays the version")
+@pass_config
+def main(config, search, stderr, tag, verbose, version):
+    """ Parses command-line arguments for StackIt """
+    config.search = search
+    config.stderr = stderr
+    config.tag = tag
+    config.verbose = verbose
 
-def main():
-    parser = getParser()
-    args = parser.parse_args()
-    if not len(sys.argv) > 1:
-        parser.print_help()
-        return
-    if(args.version):
-        print("Version " + VERSION_NUM)
-        return
-    term = getTerm(parser)
-    if(args.tag):
-        tags = getTags(parser)
-    else:
-        tags = []
-    if(parser.parse_args().verbose):
-        searchVerbose(term)
-    else:
-        searchTerm(term, tags)
+    config.term = get_term(config)
+
+    if verbose:
+        search_verbose(config.term)
+    elif search or stderr:
+        _search(config)
+    elif version:
+        click.echo("Version {VERSION_NUM}".format(**globals()))
 
 if __name__ == '__main__':
     main()
