@@ -11,6 +11,7 @@ import requests
 import subprocess
 import click
 import bs4
+import os
 
 
 if sys.version_info[:2] < (3, 0):
@@ -138,9 +139,23 @@ def get_term(config):
     if config.search:
         return config.search
     elif config.stderr:
-        process = subprocess.Popen(config.stderr, stderr=subprocess.PIPE, shell=True)
+        # don't show stdout to user
+        with open(os.devnull, 'wb') as DEVNULL:
+            process = subprocess.Popen(
+                config.stderr,
+                stdout=DEVNULL,
+                stderr=subprocess.PIPE, shell=True)
+
         output = process.communicate()[1].splitlines()
-        return "" if not len(output) else str(output[-1])
+
+        # abord if no error
+        if not len(output):
+            click.echo(click.style(
+                "Your executable command doesn't raised any error. quit",
+                fg="red"))
+            sys.exit(1)
+
+        return str(output[-1])
     return ""
 
 
