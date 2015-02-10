@@ -151,7 +151,7 @@ def get_term(config):
         # abord if no error
         if not len(output):
             click.echo(click.style(
-                "Your executable command doesn't raised any error. quit",
+                "Your executable does not raise an error.",
                 fg="red"))
             sys.exit(1)
 
