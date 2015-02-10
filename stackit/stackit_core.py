@@ -7,10 +7,8 @@ from stackexchange import Sort
 # A good testing URL: http://stackoverflow.com/questions/16800049/changepassword-test
 # The approved answer ID: 16800090
 
-import requests
 import subprocess
 import click
-import bs4
 import os
 
 
@@ -112,22 +110,12 @@ def _search(config):
 
 
 def print_question(question, count):
-    # questionurl gives the url of the SO question
-    # the answer is under id "answer-answerid", and text of answer is in class post-text
-    questionurl = question.json['link']
     answerid = question.json['accepted_answer_id']
-    # Pulls the html from the StackOverflow site, converts to Beautiful Soup
-    response = requests.get(questionurl)
-    soup = bs4.BeautifulSoup(response.text)
-    # Prints the accepted answer div, concatonated "answer-" and answerid
-    # Gets the p string -- do al answers follow this format, or do some have more info?
-    answer = soup.find("div", {"id": "answer-" + str(answerid)}).p
 
-    if answer is None:
-        # handle case where no text is provide, just code, like: http://stackoverflow.com/a/1128728/1651228
-        answer = soup.find("div", {"id": "answer-" + str(answerid)}).find("div", {"class": "post-text"})
-
-    answer = h.handle(answer.prettify())
+    answer = h.handle(so.answer(answerid, body=True).body)
+    # only 140 first char, tweet like answer
+    if len(answer) > 140:
+        answer = ''.join([answer[:140], '...'])
 
     click.echo(''.join([
         click.style(''.join([str(count), '\nQuestion: ', question.title]), fg='blue'),
@@ -150,18 +138,10 @@ def get_term(config):
 
 
 def print_full_question(question):
-    questionurl = question.json['link']
     answerid = question.json['accepted_answer_id']
-    response = requests.get(questionurl)
-    soup = bs4.BeautifulSoup(response.text)
-    # Focuses on the single div with the matching answerid--necessary b/c bs4 is quirky
-    for answerdiv in soup.find_all('div', attrs={'id': 'answer-' + str(answerid)}):
-        # Return printable text div--the contents of the answer
-        # This isn't perfect; things like code indentation aren't pretty at all
-        # print(answerdiv.find('div', attrs={'class': 'post-text'}))
-        answertext = h.handle(answerdiv.find('div', attrs={'class': 'post-text'}).prettify())
-    for cell in soup.find_all('td', attrs={'class': 'postcell'}):
-        questiontext = h.handle(cell.find('div', attrs={'class': 'post-text'}).prettify())
+
+    questiontext = h.handle(so.question(question.id, body=True).body)
+    answer = h.handle(so.answer(answerid, body=True).body)
 
     click.echo(''.join([
         click.style(''.join([
@@ -170,7 +150,7 @@ def print_full_question(question):
         ]), fg='blue'),
         ''.join([
             "\n\n-------------------------------ANSWER------------------------------------\n",
-            answertext,
+            answer,
         ]),
     ]))
 
