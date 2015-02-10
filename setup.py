@@ -9,8 +9,6 @@ setup(
     # dependencies
     install_requires=[
         'Py-StackExchange',
-        'requests',
-        'beautifulsoup4',
         'html2text',
         'Click',
     ],
