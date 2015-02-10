@@ -148,7 +148,7 @@ def get_term(config):
 
         output = process.communicate()[1].splitlines()
 
-        # abord if no error
+        # abort if no error
         if not len(output):
             click.echo(click.style(
                 "Your executable does not raise an error.",
