@@ -109,6 +109,14 @@ def _search(config):
             print_question(question, count)
             if count % NUM_RESULTS == 0:
                 focus_question(question_logs)
+    if len(questions) == 0:
+            click.echo(click.style("Your search: {0} Tags: {1} returned no results.".format(config.term,config.tag),fg="red"))
+            user_input = click.prompt("Enter b to launch browser or q to quit")
+            if user_input == "q":
+                sys.exit()
+            elif user_input == "b":
+                click.launch("https://stackoverflow.com/search?q={0}{1}".format(config.term,config.tag))
+    
 
 
 def print_question(question, count):
