@@ -51,7 +51,6 @@ The install process establishes an alias, `stackit`, for stackit_core.py's funct
 <p align="center"><img src="http://i.imgur.com/Y9hpErQ.gif"></p>
 
 ### Command line arguments
-+ none: version splash page // usage
 + `-h`, `--help`: version splash page // usage
 + `-s`: `--search`: search by user term (string)
 + `--version`: simple version report
