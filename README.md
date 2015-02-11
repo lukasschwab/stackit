@@ -48,10 +48,9 @@ Note, depending on your computer's settings, you may need to `sudo python setup.
 
 The install process establishes an alias, `stackit`, for stackit_core.py's functionality. Instead of using `python stackit_core.py`, you will *always* simply use `stackit` at the command prompt.
 
-<p align="center"><img src="http://i.giphy.com/3rgXBA2qoAawH6bAjK.gif"></p>
+<p align="center"><img src="http://i.imgur.com/Y9hpErQ.gif"></p>
 
 ### Command line arguments
-+ none: version splash page // usage
 + `-h`, `--help`: version splash page // usage
 + `-s`: `--search`: search by user term (string)
 + `--version`: simple version report
@@ -105,4 +104,4 @@ If you want to write code:
 #### Pull Requests
 
 + [Phil (schwartzmx)](https://github.com/schwartzmx): [#4](https://github.com/lukasschwab/stackit/pull/4), [#6](https://github.com/lukasschwab/stackit/pull/6)
-+ [Steeve (WnP)](https://github.com/WnP): [#8](https://github.com/lukasschwab/stackit/pull/8#issuecomment-73205402), [#7](https://github.com/lukasschwab/stackit/pull/7), [#9](https://github.com/lukasschwab/stackit/pull/9)
++ [Steeve (WnP)](https://github.com/WnP): [#8](https://github.com/lukasschwab/stackit/pull/8#issuecomment-73205402), [#7](https://github.com/lukasschwab/stackit/pull/7), [#9](https://github.com/lukasschwab/stackit/pull/9), [README .gif 2/10/15](http://i.imgur.com/Y9hpErQ.gif)
