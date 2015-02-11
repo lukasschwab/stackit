@@ -110,7 +110,6 @@ def _search(config):
             if count % NUM_RESULTS == 0:
                 focus_question(question_logs)
     
-
     if not questions:
             click.echo(
                 click.style("Your search \'{0}\' with tags \'{1}\' returned no results.".format(config.term,config.tag),
