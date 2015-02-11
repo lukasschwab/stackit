@@ -144,13 +144,23 @@ def get_term(config):
     if config.search:
         return config.search
     elif config.stderr:
-        commandlist = config.stderr.split()
-        command = commandlist[0]
-        # Get current working directory and replace spaces with '\ ' to stop errors
-        filename = (os.getcwd()).replace(' ', '\ ') + "/" + commandlist[1]
-        process = subprocess.Popen(command + " " + filename, stderr=subprocess.PIPE, shell=True)
-        output = process.communicate()[1]
-        return (str(output.splitlines()[-1]) + " ")
+        # don't show stdout to user
+        with open(os.devnull, 'wb') as DEVNULL:
+            process = subprocess.Popen(
+                config.stderr,
+                stdout=DEVNULL,
+                stderr=subprocess.PIPE, shell=True)
+
+        output = process.communicate()[1].splitlines()
+
+        # abort if no error
+        if not len(output):
+            click.echo(click.style(
+                "Your executable does not raise an error.",
+                fg="red"))
+            sys.exit(1)
+
+        return str(output[-1])
     return ""
 
 
