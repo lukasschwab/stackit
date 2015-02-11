@@ -116,9 +116,6 @@ def _search(config):
                 click.style("Your search \'{0}\' with tags \'{1}\' returned no results.".format(config.term,config.tag),
                 fg="red"))
             
-            
-    
-
 
 def print_question(question, count):
     # questionurl gives the url of the SO question
