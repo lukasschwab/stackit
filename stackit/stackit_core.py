@@ -19,7 +19,7 @@ NUM_RESULTS = 5
 # API key is public, according to SO documentation
 # (link?)
 API_KEY = "3GBT2vbKxgh*ati7EBzxGA(("
-VERSION_NUM = "0.1.3"
+VERSION_NUM = "0.1.7"
 
 # HTML to markdown parsing
 # https://github.com/aaronsw/html2text
