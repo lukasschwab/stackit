@@ -124,7 +124,7 @@ def print_question(question, count):
 
     click.echo(''.join([
         click.style(''.join([str(count), '\nQuestion: ', question.title]), fg='blue'),
-        ''.join(['\nAnswer', answer]),
+        ''.join(['\nAnswer:', answer, "\n"]),
     ]))
 
 
@@ -160,11 +160,11 @@ def print_full_question(question):
 
     click.echo(''.join([
         click.style(''.join([
-            "-------------------------QUESTION------------------------\n",
+            "\n\n------------------------------QUESTION-----------------------------------\n\n",
             question.title, '\n', questiontext,
         ]), fg='blue'),
         ''.join([
-            "\n\n-------------------------------ANSWER------------------------------------\n",
+            "\n-------------------------------ANSWER------------------------------------",
             answer,
         ]),
     ]))
