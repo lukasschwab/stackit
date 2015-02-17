@@ -104,5 +104,5 @@ If you want to write code:
 #### Pull Requests
 
 + [Phil (schwartzmx)](https://github.com/schwartzmx): [#4](https://github.com/lukasschwab/stackit/pull/4), [#6](https://github.com/lukasschwab/stackit/pull/6)
-+ [Steeve (WnP)](https://github.com/WnP): [#8](https://github.com/lukasschwab/stackit/pull/8#issuecomment-73205402), [#7](https://github.com/lukasschwab/stackit/pull/7), [#9](https://github.com/lukasschwab/stackit/pull/9), [README .gif 2/10/15](http://i.imgur.com/Y9hpErQ.gif), [#10](https://github.com/lukasschwab/stackit/pull/10), [#13](https://github.com/lukasschwab/stackit/pull/13)
++ [Steeve (WnP)](https://github.com/WnP): [#8](https://github.com/lukasschwab/stackit/pull/8#issuecomment-73205402), [#7](https://github.com/lukasschwab/stackit/pull/7), [#9](https://github.com/lukasschwab/stackit/pull/9), [README .gif 2/10/15](http://i.imgur.com/Y9hpErQ.gif), [#10](https://github.com/lukasschwab/stackit/pull/10), [#13](https://github.com/lukasschwab/stackit/pull/13), [#14](https://github.com/lukasschwab/stackit/pull/14)
 + [Robert (grobbie94)](https://github.com/grobbie94): [#12](https://github.com/lukasschwab/stackit/pull/12)
