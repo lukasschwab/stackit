@@ -67,7 +67,8 @@ def select(questions, num):
         else:
             click.echo(click.style(
                 "The input entered was not recognized as a valid choice.",
-                fg="red"))
+                fg="red",
+                err=True))
 
 
 def focus_question(questions):
@@ -83,7 +84,8 @@ def focus_question(questions):
         else:
             click.echo(click.style(
                 "The input entered was not recognized as a valid choice.",
-                fg="red"))
+                fg="red",
+                err=True))
 
 
 def _search(config):
@@ -107,12 +109,15 @@ def _search(config):
             print_question(question, count)
             if count % NUM_RESULTS == 0:
                 focus_question(question_logs)
-    
+
     if not questions:
-            click.echo(
-                click.style("Your search \'{0}\' with tags \'{1}\' returned no results.".format(config.term,config.tag),
-                fg="red"))
-            
+        click.echo(
+            click.style(
+                "Your search \'{0}\' with tags \'{1}\' returned no results.".format(config.term, config.tag),
+                fg="red",
+                err=True))
+        sys.exit(1)
+
 
 def print_question(question, count):
     answerid = question.json['accepted_answer_id']
@@ -198,6 +203,13 @@ def main(config, search, stderr, tag, verbose, version):
         _search(config)
     elif version:
         click.echo("Version {VERSION_NUM}".format(**globals()))
+    else:
+        click.echo(
+            click.style(
+                "No argument provided, use --help for help",
+                fg="red",
+                err=True))
+        sys.exit(1)
 
 if __name__ == '__main__':
     main()
