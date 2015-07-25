@@ -15,7 +15,7 @@ import os
 if sys.version_info[:2] < (3, 0):
     input = raw_input
 
-NUM_RESULTS = 5
+NUM_RESULTS = 4
 # API key is public, according to SO documentation
 # (link?)
 API_KEY = "3GBT2vbKxgh*ati7EBzxGA(("
@@ -163,7 +163,7 @@ def print_full_question(question):
     questiontext = h.handle(so.question(question.id, body=True).body)
     answer = h.handle(so.answer(answerid, body=True).body)
 
-    click.echo(''.join([
+    click.echo_via_pager(''.join([
         click.style(''.join([
             "\n\n------------------------------QUESTION-----------------------------------\n\n",
             question.title, '\n', questiontext,
