@@ -19,7 +19,7 @@ setup(
     description="stackit sends smart StackOverflow queries from your command line",
     license="MIT",
     keywords="error stderr stack overflow stackoverflow stack exchange stackexchange",
-    url="http://stackitfor.me",  # project homepage
+    url="https://github.com/lukasschwab/stackit",  # project homepage
     download_url="https://github.com/lukasschwab/stackit/tarball/0.1.7",
 
     entry_points={

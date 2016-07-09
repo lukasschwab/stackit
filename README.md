@@ -6,7 +6,7 @@ The essential sidekick to any superhero developer. <br />
 
 <b>stackit</b> sends smart StackOverflow queries from your command line. <br />
 
-<a href="http://stackitfor.me">stackitfor.me</a> -- Created at <a href="http://ucsbhacks.com">SB Hacks</a> 2015. <br />
+Created at <a href="http://ucsbhacks.com">SB Hacks</a> 2015. <br />
 
 <img src="http://i.giphy.com/3xz2BtvxJvZQb7Pyes.gif">
 </p>
@@ -66,8 +66,7 @@ The install process establishes an alias, `stackit`, for stackit_core.py's funct
 ### Examples
 To search Stack Overflow for "How do I create a bash alias" with the tags, "shell";
 
-    $ stackit -s "How do I create a bash alias?" -t "shell"
-More examples on [our website](http://www.stackitfor.me)
+`$ stackit -s "How do I create a bash alias?" -t "shell"`
 
 ## Thanks
 This project is possible because of several other pre-existing projects and their contributors:
