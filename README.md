@@ -1,21 +1,11 @@
 # stackit
 
-<p align="center">
-
-The essential sidekick to any superhero developer. <br />
-
-<b>stackit</b> sends smart StackOverflow queries from your command line. <br />
-
-Created at <a href="http://ucsbhacks.com">SB Hacks</a> 2015. <br />
-
-</p>
-
-***
+`stackit` is a Stack Overflow query CLI built at SB Hacks 2015.
 
 ## Features
 
 + Written entirely in Python
-+ Automatically pipes error messages into StackOverflow queries
++ Automatically pipes error messages into Stack Overflow queries
 + Parses and displays relevant questions and answers directly on the command line in reader-friendly markdown format
 
 ## Installation
@@ -68,7 +58,8 @@ To search Stack Overflow for "How do I create a bash alias" with the tags, "shel
 `$ stackit -s "How do I create a bash alias?" -t "shell"`
 
 ## Thanks
-This project is possible because of several other pre-existing projects and their contributors:
+
+`stackit` uses several pre-existing projects:
 
 + [Py-StackExchange](https://github.com/lucjon/Py-StackExchange): a Python wrapper for the StackExchange API
 + [Requests](https://github.com/kennethreitz/requests): "HTTP for Humans"
@@ -79,8 +70,6 @@ This project is possible because of several other pre-existing projects and thei
 
 ## Contributing
 
-We <3 issue submissions, and address your problem as quickly as possible!
-
 If you want to write code:
 
 1. Fork the repository
@@ -89,17 +78,9 @@ If you want to write code:
 4. Push to your branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
 
-### Contributors
-
-#### OG (SB Hacks 2015 Crew)
+### SB Hacks 2015 team
 
 + [Vicki Niu](https://github.com/vickiniu)
 + [Leilani Reyes](https://github.com/lanidelrey)
 + [Eni Asebiomo](https://github.com/eniasebiomo)
 + [Lukas Schwab](https://github.com/lukasschwab)
-
-#### Pull Requests
-
-+ [Phil (schwartzmx)](https://github.com/schwartzmx): [#4](https://github.com/lukasschwab/stackit/pull/4), [#6](https://github.com/lukasschwab/stackit/pull/6)
-+ [Steeve (WnP)](https://github.com/WnP): [#8](https://github.com/lukasschwab/stackit/pull/8#issuecomment-73205402), [#7](https://github.com/lukasschwab/stackit/pull/7), [#9](https://github.com/lukasschwab/stackit/pull/9), [README .gif 2/10/15](http://i.imgur.com/Y9hpErQ.gif), [#10](https://github.com/lukasschwab/stackit/pull/10), [#13](https://github.com/lukasschwab/stackit/pull/13), [#14](https://github.com/lukasschwab/stackit/pull/14)
-+ [Robert (grobbie94)](https://github.com/grobbie94): [#12](https://github.com/lukasschwab/stackit/pull/12)
